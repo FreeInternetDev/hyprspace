@@ -143,7 +143,7 @@ func UpRun(r *cmd.Root, c *cmd.Sub) {
 
 	// Setup Peer Table for Quick Packet --> Dest ID lookup
 	peerTable := make(map[string]peer.ID)
-
+	//fmt.Println("[+] peerTable : ", peerTable)
 	for ip, id := range cfg.Peers {
 		peerTable[ip], err = peer.Decode(id.ID)
 		checkErr(err)
@@ -370,6 +370,8 @@ func prettyDiscovery(ctx context.Context, node host.Host, peerTable map[string]p
 	for len(tempTable) > 0 {
 		for ip, id := range tempTable {
 			stream, err := node.NewStream(ctx, id, p2p.Protocol)
+			fmt.Println("[+] Dialing ", ip+" ...")
+			// fmt.Println("[+] Remote peer ID :", id)
 			if err != nil && (strings.HasPrefix(err.Error(), "failed to dial") ||
 				strings.HasPrefix(err.Error(), "no addresses")) {
 				// Attempt to connect to peers slowly when they aren't found.

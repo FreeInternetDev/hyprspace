@@ -29,20 +29,22 @@ func CreateNode(ctx context.Context, inputKey string, port int, handler network.
 		return
 	}
 
-	//ip6quic := fmt.Sprintf("/ip6/::/udp/%d/quic", port)
+	ip6quic := fmt.Sprintf("/ip6/::/udp/%d/quic", port)
 	ip4quic := fmt.Sprintf("/ip4/0.0.0.0/udp/%d/quic", port)
 
-	//ip6tcp := fmt.Sprintf("/ip6/::/tcp/%d", port)
+	ip6tcp := fmt.Sprintf("/ip6/::/tcp/%d", port)
 	ip4tcp := fmt.Sprintf("/ip4/0.0.0.0/tcp/%d", port)
 
 	// Create libp2p node
 	node, err = libp2p.New(
-		libp2p.ListenAddrStrings(ip4quic, ip4tcp),
+		libp2p.ListenAddrStrings(ip4quic, ip4tcp, ip6quic, ip6tcp),
 		libp2p.Identity(privateKey),
 		libp2p.DefaultSecurity,
 		libp2p.EnableHolePunching(),
 		libp2p.EnableNATService(),
 		libp2p.NATPortMap(),
+		//libp2p.DefaultMuxers,
+		//libp2p.Transport(libp2pquic.NewTransport),
 		libp2p.Transport(tcp.NewTCPTransport),
 		libp2p.Routing(func(h host.Host) (routing.PeerRouting, error) {
 			idht, err := dht.New(ctx, h)
@@ -61,7 +63,7 @@ func CreateNode(ctx context.Context, inputKey string, port int, handler network.
 	dhtOut = dht.NewDHTClient(ctx, node, datastore.NewMapDatastore())
 
 	// Define Bootstrap Nodes.
-	peers := []string{}
+	peers := []string{"/ip4/159.20.106.116/tcp/4001/ipfs/12D3KooWPmRewJQQt1opP4986xPJfYiamGYZKEKqoa54tcvekevu"}
 
 	// Convert Bootstap Nodes into usable addresses.
 	BootstrapPeers := make(map[peer.ID]*peer.AddrInfo, len(peers))
