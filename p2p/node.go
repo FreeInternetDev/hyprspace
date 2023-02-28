@@ -43,8 +43,7 @@ func CreateNode(ctx context.Context, inputKey string, port int, handler network.
 		libp2p.EnableHolePunching(),
 		libp2p.EnableNATService(),
 		libp2p.NATPortMap(),
-		//libp2p.DefaultMuxers,
-		//libp2p.Transport(libp2pquic.NewTransport),
+		libp2p.Transport(libp2pquic.NewTransport),
 		libp2p.Transport(tcp.NewTCPTransport),
 		libp2p.Routing(func(h host.Host) (routing.PeerRouting, error) {
 			idht, err := dht.New(ctx, h)
