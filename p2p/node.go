@@ -62,7 +62,7 @@ func CreateNode(ctx context.Context, inputKey string, port int, handler network.
 	dhtOut = dht.NewDHTClient(ctx, node, datastore.NewMapDatastore())
 
 	// Define Bootstrap Nodes.
-	peers := []string{"/ip4/159.20.106.116/tcp/4001/ipfs/12D3KooWPmRewJQQt1opP4986xPJfYiamGYZKEKqoa54tcvekevu"}
+	peers := []string{}
 
 	// Convert Bootstap Nodes into usable addresses.
 	BootstrapPeers := make(map[peer.ID]*peer.AddrInfo, len(peers))
