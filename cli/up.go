@@ -143,6 +143,7 @@ func UpRun(r *cmd.Root, c *cmd.Sub) {
 
 	// Setup Peer Table for Quick Packet --> Dest ID lookup
 	peerTable := make(map[string]peer.ID)
+
 	for ip, id := range cfg.Peers {
 		peerTable[ip], err = peer.Decode(id.ID)
 		checkErr(err)
