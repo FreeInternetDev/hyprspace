@@ -74,7 +74,7 @@ Change IPFS config file when your boot node is behind NAT.
       "/ip4/*`public ip`*/udp/4001/quic/webtransport"
     ]
 
-- Restart IPFS node
+***Restart IPFS node***
 
 - IPFS_PATH=~/.ipfs ipfs shutdown
 - IPFS_PATH=~/.ipfs ipfs daemon &
