@@ -21,7 +21,7 @@
 
 ### Setting up your Modem
 
-Enable port forwarding for port 4001 (TCP/UDP) toward your local IPFS node and set firewall corresponding settings.
+Enable port forwarding for port 4001 (TCP/UDP) toward your local IPFS node and set related firewall settings.
 
 ### Download and Install `Go`
 
