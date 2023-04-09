@@ -49,7 +49,7 @@ Enable port forwarding for port 4001 (TCP/UDP) toward your local IPFS node and s
 1) IPFS_PATH=~/.ipfs ipfs bootstrap rm --all
 2) IPFS_PATH=~/.ipfs ipfs config show | grep "PeerID"
 3) IPFS_PATH=~/.ipfs ipfs bootstrap add /ip4/<your public ip address>/tcp/4001/p2p/<peer identity hash of bootnode>
-Example:
+- Example:
 IPFS_PATH=~/.ipfs ipfs bootstrap add /ip4/172.25.10.5/tcp/4001/p2p/QmdbaLZsKA94tsYeKJEPyLThWARFCtWyJWuudBUd4z9KBU
 
 *Run steps 1 and 3 on other nodes.*
